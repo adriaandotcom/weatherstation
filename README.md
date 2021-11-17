@@ -19,6 +19,14 @@
 
     <img width="921" alt="image" src="https://user-images.githubusercontent.com/1079135/142266384-6480e6ed-a01b-4d44-ae21-98b454be8ac0.png">
 
+1. Install libraries:
+   - TinyGsmClient
+   - ArduinoHttpClient
+   - Ticker
+   - Time (search for `timelib`)
+   <img width="800" alt="image" src="https://user-images.githubusercontent.com/1079135/142267014-ed3632c2-2a43-42d6-9893-70ba351c8787.png">
+
+1. Follow [these instructions](https://github.com/Xinyuan-LilyGO/LilyGO-T-A7670X/issues/1) to connect from macOS
 
 ### Pin schema for the LILYGO TTGO T-SIM-A7670E
 
