@@ -15,6 +15,11 @@
 
     <img width="800" alt="image" src="https://user-images.githubusercontent.com/1079135/142245041-98a954bc-9b76-4657-88ca-524d6c9669ca.png">
 
+1. Connect board, select port:
+
+    <img width="921" alt="image" src="https://user-images.githubusercontent.com/1079135/142266384-6480e6ed-a01b-4d44-ae21-98b454be8ac0.png">
+
+
 ### Pin schema for the LILYGO TTGO T-SIM-A7670E
 
 ![LILYGO-TTGO-T-SIM-A7670E](images/LILYGO-TTGO-T-SIM-A7670E.jpg)
