@@ -30,29 +30,29 @@ int E  = 3526;
 int S  = 3810;
 int W  = 3906;
 
-int between(int start, int end) {
+int middle(int start, int end) {
   return min(start, end) + abs(start - end) / 2;
 }
 
 // Converts compass direction to heading
 void getHeading(int VaneValue) {
-  if (VaneValue < between(NE - 200, NE))
+  if (VaneValue < middle(NE - 200, NE))
     Serial.println("TOO LOW");
-  else if (VaneValue < between(NE, NW))
+  else if (VaneValue < middle(NE, NW))
     Serial.println("NE");
-  else if (VaneValue < between(NW, SE))
+  else if (VaneValue < middle(NW, SE))
     Serial.println("NW");
-  else if (VaneValue < between(SE, N))
+  else if (VaneValue < middle(SE, N))
     Serial.println("SE");
-  else if (VaneValue < between(N, SW))
+  else if (VaneValue < middle(N, SW))
     Serial.println("N");
-  else if (VaneValue < between(SW, E))
+  else if (VaneValue < middle(SW, E))
     Serial.println("SW");
-  else if (VaneValue < between(E, S))
+  else if (VaneValue < middle(E, S))
     Serial.println("E");
-  else if (VaneValue < between(S, W))
+  else if (VaneValue < middle(S, W))
     Serial.println("S");
-  else if (VaneValue < between(W, W + 200))
+  else if (VaneValue < middle(W, W + 200))
     Serial.println("W");
   else
     Serial.println("TOO HIGH");
