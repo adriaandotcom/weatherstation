@@ -1,3 +1,5 @@
+// http://cactus.io/hookups/weather/anemometer/davis/hookup-arduino-to-davis-anemometer
+
 int lastRead;
 int lastTime = millis();
 
