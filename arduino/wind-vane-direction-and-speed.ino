@@ -1,26 +1,38 @@
 // Timers
 unsigned long lastTime = millis();
+unsigned long lastBoot = millis();
 unsigned long lastRotation = millis();
 
 // Pins
 const byte windSpeedPin = 32;
 const byte windDirectionPin = 33;
 
-// Counter
+// Variables
 int halfRotations = 0;
+const int sleepSeconds = 10;
+
+// Sleep safe variables
+RTC_DATA_ATTR int bootNumber = 0;
 
 void setup() {
-  pinMode(windSpeedPin, INPUT);
-  digitalWrite(windSpeedPin, HIGH);  // Internall pull-up active
+  pinMode(windSpeedPin, INPUT); // Was INPUT
+  digitalWrite(windSpeedPin, HIGH);  // Was HIGH; internall pull-up active
   Serial.begin(115200);
   attachInterrupt(digitalPinToInterrupt(windSpeedPin), addRotation, HIGH);
+  bootNumber++;
+
+  Serial.print("Boot number: ");
+  Serial.println(bootNumber);
 }
 
 void loop() {
+  // Read resistance from pin
   const int directionResistance = analogRead(windDirectionPin);
+
+  // Calculate rpm
   const int rotations = halfRotations / 2;
   const char * cardinalDirection = getCardinalDirection(directionResistance);
-  const unsigned long interval = millis() - lastTime;
+  const int interval = millis() - lastTime;
   const float multiply = 60000.00 / interval;
   const float rpm = multiply * rotations;
 
@@ -38,6 +50,12 @@ void loop() {
   lastTime = millis();
   halfRotations = 0;
 
+  if (millis() - lastBoot > 20000) {
+    Serial.println("ESP32 going to Deep Sleep");
+    esp_sleep_enable_timer_wakeup(sleepSeconds * 1000000);
+    esp_deep_sleep_start();
+  }
+
   delay(5000);
 }
 
@@ -45,7 +63,7 @@ void addRotation() {
   if (millis() - lastRotation < 10) return;
   lastRotation = millis();
   halfRotations++;
-} 
+}
 
 // Measurements manually taken
 int NE = 2887;
@@ -85,4 +103,4 @@ const char* getCardinalDirection(int value) {
     return "W";
   else
     return "";
-} 
+}
