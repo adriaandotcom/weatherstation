@@ -1,7 +1,6 @@
 int lastRead;
 int lastTime = millis();
 
-
 void setup() {
   lastRead = 1;
   Serial.begin(115200);
